@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+	<arg name="robot_cmd_vel" default="/cmd_vel" />
+	<arg name="maximum_linear_velocity" default="2.0" />
+	<arg name="maximum_angular_velocity" default="0.5" />
+	<arg name="pubfreq" default="30" />
+	<arg name="srv_enable" default="enable_motors" />
+	<arg name="srv_disable" default="disable_motors" />
+	<node pkg="gpadteleop" type="GPadTeleop" name="gpadteleop">
+	    <remap from="cmd_vel" to="$(arg robot_cmd_vel)" />
+	    <remap from="joy" to="/joy" />
+	    <param name="max_lin_vel" value="$(arg maximum_linear_velocity)" type="double" />
+	    <param name="max_ang_vel" value="$(arg maximum_angular_velocity)" type="double" />
+	    <param name="publish_freq" value="$(arg pubfreq)" type="int" />
+	    <param name="srv_motors_enable" value="$(arg srv_enable)" type="string" />
+	    <param name="srv_motors_disable" value="$(arg srv_disable)" type="string" />
+	</node>
+	<!-- launching game pad node  -->
+	<node respawn="false" pkg="joy" type="joy_node" name="joystick">
+		<param name="dev" type="string" value="/dev/input/js0" />
+		<param name="deadzone" value="0.12" />
+	</node>
+</launch>
