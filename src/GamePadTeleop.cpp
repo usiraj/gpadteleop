@@ -56,40 +56,40 @@ namespace gpadteleop{
 		this->reconfiguring = true;
 		boost::mutex::scoped_lock lock(this->mutx_configure);
 		// checking for different levels and doing appropriate actions
-		if ( level && GamePadLevels::GPADLEVEL_AXIS_LIN ){
+		if ( level & GamePadLevels::GPADLEVEL_AXIS_LIN ){
 			this->gamepad_params.axis_linear = config.axis_linear;
 			ROS_INFO("Linear Axis is : %d",this->gamepad_params.axis_linear);
-		} if ( level && GamePadLevels::GPADLEVEL_AXIS_LINSPEED ){
+		} if ( level & GamePadLevels::GPADLEVEL_AXIS_LINSPEED ){
 			this->gamepad_params.axis_linear_speed = config.axis_linear_speed;
 			ROS_INFO("Linear Speed Axis is : %d",this->gamepad_params.axis_linear_speed);
-		} if ( level && GamePadLevels::GPADLEVEL_AXIS_ANG ){
+		} if ( level & GamePadLevels::GPADLEVEL_AXIS_ANG ){
 			this->gamepad_params.axis_angular = config.axis_angular;
 			ROS_INFO("Angular Axis is : %d",this->gamepad_params.axis_angular);
-		} if ( level && GamePadLevels::GPADLEVEL_AXIS_ANGSPEED){
+		} if ( level & GamePadLevels::GPADLEVEL_AXIS_ANGSPEED){
 			this->gamepad_params.axis_angular_speed = config.axis_angular_speed;
 			ROS_INFO("Angular Speed Axis is : %d",this->gamepad_params.axis_angular_speed);
-		} if ( level && GamePadLevels::GPADLEVEL_BTN_LOCK){
+		} if ( level & GamePadLevels::GPADLEVEL_BTN_LOCK){
 			this->gamepad_params.btn_lock = config.btn_robot_lock;
 			ROS_INFO("Lock Toggle Button is : %d",this->gamepad_params.btn_lock);
-		} if ( level && GamePadLevels::GPADLEVEL_BTN_SFTBRK){
+		} if ( level & GamePadLevels::GPADLEVEL_BTN_SFTBRK){
 			this->gamepad_params.btn_soft_brake = config.btn_soft_brake;
 			ROS_INFO("Soft Brake Button is : %d",this->gamepad_params.btn_soft_brake);
-		} if ( level && GamePadLevels::GPADLEVEL_BTN_HRDBRK){
+		} if ( level & GamePadLevels::GPADLEVEL_BTN_HRDBRK){
 			this->gamepad_params.btn_hard_brake = config.btn_hard_brake;
 			ROS_INFO("Hard Brake Button is : %d",this->gamepad_params.btn_hard_brake);
-		} if ( level && GamePadLevels::GPADLEVEL_BTN_TGLLIN){
+		} if ( level & GamePadLevels::GPADLEVEL_BTN_TGLLIN){
 			this->gamepad_params.btn_speedmode_lin = config.btn_speed_mode_lin;
 			ROS_INFO("Linear Speed Mode Button is : %d",this->gamepad_params.btn_speedmode_lin);
-		} if ( level && GamePadLevels::GPADLEVEL_BTN_TGLANG){
+		} if ( level & GamePadLevels::GPADLEVEL_BTN_TGLANG){
 			this->gamepad_params.btn_speedmode_ang = config.btn_speed_mode_ang;
 			ROS_INFO("Angular Speed Mode Button is : %d",this->gamepad_params.btn_speedmode_ang);
-		} if ( level && GamePadLevels::GPADLEVEL_BTN_LINMODE){
+		} if ( level & GamePadLevels::GPADLEVEL_BTN_LINMODE){
 			this->gamepad_params.btn_lin_mode = config.btn_lin_mode;
 			ROS_INFO("Linear Level Button is : %d",this->gamepad_params.btn_lin_mode);
-		} if ( level && GamePadLevels::GPADLEVEL_BTN_ANGMODE){
+		} if ( level & GamePadLevels::GPADLEVEL_BTN_ANGMODE){
 			this->gamepad_params.btn_ang_mode = config.btn_ang_mode;
 			ROS_INFO("Angular Level Button is : %d",this->gamepad_params.btn_ang_mode);
-		} if ( level && GamePadLevels::GPADLEVEL_MAXLIN) {
+		} if ( level & GamePadLevels::GPADLEVEL_MAXLIN) {
 			this->gamepad_params.cap_lin_slow = config.percent_lin_slow * config.max_lin_vel;
 			this->gamepad_params.cap_lin_medium = config.percent_lin_medium * config.max_lin_vel;
 			this->gamepad_params.cap_lin_fast = config.percent_lin_fast * config.max_lin_vel;
@@ -97,7 +97,7 @@ namespace gpadteleop{
 			ROS_INFO("Changing maximum linear velocities - fast: %f medium: %f slow: %f increment: %f",
 					this->gamepad_params.cap_lin_fast,this->gamepad_params.cap_lin_medium,
 					this->gamepad_params.cap_lin_slow,this->gamepad_params.percent_lin_inc);
-		} if ( level && GamePadLevels::GPADLEVEL_MAXANG ){
+		} if ( level & GamePadLevels::GPADLEVEL_MAXANG ){
 			this->gamepad_params.cap_ang_slow = config.percent_ang_slow * config.max_ang_vel;
 			this->gamepad_params.cap_ang_medium = config.percent_ang_medium * config.max_ang_vel;
 			this->gamepad_params.cap_ang_fast = config.percent_ang_fast * config.max_ang_vel;
@@ -105,13 +105,13 @@ namespace gpadteleop{
 			ROS_INFO("Changing maximum linear velocities - fast: %f medium: %f slow: %f increment: %f",
 					this->gamepad_params.cap_ang_fast,this->gamepad_params.cap_ang_medium,
 					this->gamepad_params.cap_ang_slow,this->gamepad_params.percent_ang_inc);
-		} if ( level && GamePadLevels::GPADLEVEL_MOTORE ){
+		} if ( level & GamePadLevels::GPADLEVEL_MOTORE ){
 			this->gamepad_params.srv_motors_enable = config.srv_motors_enable;
 			ROS_INFO("Service for enabling motors is : %s",this->gamepad_params.srv_motors_enable.c_str());
-		} if ( level && GamePadLevels::GPADLEVEL_MOTORD){
+		} if ( level & GamePadLevels::GPADLEVEL_MOTORD){
 			this->gamepad_params.srv_motors_disable = config.srv_motors_disable;
 			ROS_INFO("Service for disabling motors is : %s",this->gamepad_params.srv_motors_disable.c_str());
-		} if ( level && GamePadLevels::GPADLEVEL_PUBFREQ){
+		} if ( level & GamePadLevels::GPADLEVEL_PUBFREQ){
 			this->gamepad_params.pub_freq = config.publish_freq;
 			this->timer.setPeriod(ros::Duration(double(1)/double(this->gamepad_params.pub_freq)));
 			ROS_INFO("New Publish Frequency is : %d Hz",this->gamepad_params.pub_freq);
